@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="NopCommerce - User">
+<suite name="Selenium GRID">
 
 
-  <parameter name = "enviroment" value = "dev"/>
-
-  <test name="Run on chrome">
-
-  <parameter name = "browser" value = "firefox"/>
+  <test name="Run on Firefox">
+    <parameter name="browser" value="firefox" />
+    <parameter name="osName" value="windows" />
+    <parameter name="ipAddress" value="192.168.1.19" />
+    <parameter name="port" value="5555" />
     <classes>
-   
-      <class name="selenium.TestGrid"/>
-    </classes> 
+      <class name="selenium.Level_00_Register_Login_Step_By_Step" />
+    </classes>
   </test>
- 
-</suite> 
+
+</suite>

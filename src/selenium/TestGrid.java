@@ -1,14 +1,21 @@
 package selenium;
 
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
@@ -17,16 +24,54 @@ public class TestGrid {
     String emailAddress;
     String projectPath = System.getProperty("user.dir");
 
-    @BeforeClass
-    public void beforeClass() {
-        System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-        driver = new FirefoxDriver();
 
-        emailAddress = "curry" + generateFakeNumber() + "@gmail.comdwddwwd.vn";
+    @Parameters({"browser", "ipAddress", "port"})
+    @BeforeClass
+    public void beforeClass(String browserName, String ipAddress, String portNumber) {
+        DesiredCapabilities capability = null;
+
+        switch (browserName) {
+            case "firefox" :
+
+                capability = DesiredCapabilities.firefox();
+                capability.setBrowserName("firefox");
+
+
+                FirefoxOptions fOptions = new FirefoxOptions();
+                fOptions.merge(capability);
+                break;
+            case "chrome" :
+                System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+                capability = DesiredCapabilities.chrome();
+                capability.setBrowserName("chrome");
+
+                ChromeOptions cOptions = new ChromeOptions();
+                cOptions.merge(capability);
+                break;
+            case "edge" :
+                System.setProperty("webdriver.edge.driver", projectPath + "\\browserDrivers\\msedgedriver.exe");
+                capability = DesiredCapabilities.edge();
+                capability.setBrowserName("edge");
+
+                EdgeOptions eOptions = new EdgeOptions();
+                eOptions.merge(capability);
+                break;
+            default :
+                throw new RuntimeException("Browser is not valid!");
+        }
+
+        try {
+            driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub", ipAddress, portNumber)), capability);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        emailAddress = "curry" + generateFakeNumber() + "@gmail.com.vn";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
-        driver.get("https://demo.nopcommerce.com");
+        driver.get("https://demo.nopcommerce.com/");
     }
+
+
 
     @Test
     public void TC_01_Register_With_Empty_Data() {
