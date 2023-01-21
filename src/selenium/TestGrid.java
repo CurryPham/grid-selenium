@@ -1,6 +1,5 @@
 package selenium;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 
@@ -13,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-public class test {
+public class TestGrid {
     WebDriver driver;
     String emailAddress;
     String projectPath = System.getProperty("user.dir");
@@ -23,7 +22,7 @@ public class test {
         System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
         driver = new FirefoxDriver();
 
-        emailAddress = "curry" + generateFakeNumber() + "@gmail.com";
+        emailAddress = "curry" + generateFakeNumber() + "@gmail.comdwddwwd.vn";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com");

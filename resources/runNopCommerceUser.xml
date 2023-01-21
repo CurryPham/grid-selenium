@@ -9,7 +9,7 @@
   <parameter name = "browser" value = "firefox"/>
     <classes>
    
-      <class name="selenium.test"/>
+      <class name="selenium.TestGrid"/>
     </classes> 
   </test>
  
