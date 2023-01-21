@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="libSelenium">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libSelenium/testng-6.14.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libSelenium/selenium-server-standalone-3.141.59.jar!/" />
+      <root url="file://$PROJECT_DIR$/libSelenium" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libSelenium/client-combined-3.141.59-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/libSelenium" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/libSelenium" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libSelenium" recursive="false" type="SOURCES" />
+  </library>
+</component>
